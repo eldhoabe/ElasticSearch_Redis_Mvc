@@ -68,3 +68,4 @@ E:\WorkShops\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\ElasticSearch_Redis
 E:\WorkShops\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\WorkShops\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\obj\Debug\ElasticSearch_Redis_Mvc.dll
 E:\WorkShops\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\obj\Debug\ElasticSearch_Redis_Mvc.pdb
+E:\WorkShops\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\ElasticSearch_Redis_Mvc\obj\Debug\ElasticSearch_Redis_Mvc.csprojResolveAssemblyReference.cache

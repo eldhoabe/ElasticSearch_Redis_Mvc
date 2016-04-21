@@ -11,6 +11,9 @@ using System.Web.Mvc;
 
 namespace ElasticSearch_Redis_Mvc.Controllers
 {
+    /// <summary>
+    /// Elastic search controller
+    /// </summary>
     public class ElasticController : Controller
     {
         protected ElasticSearchRepository elasticSearch;
@@ -20,28 +23,37 @@ namespace ElasticSearch_Redis_Mvc.Controllers
             elasticSearch = new ElasticSearchRepository(new Uri("http://localhost:9200/"));
         }
 
-        // GET api/<controller>
-        public string Search()
+        //Elastic/Search?search=eldho
+
+        /// <summary>
+        /// Search using elastic search
+        /// </summary>
+        /// <param name="search">The search key</param>
+        /// <returns></returns>
+        public JsonResult Search(string search)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
 
+                var employees = elasticSearch.Search(search);
 
-            elasticSearch.Search("Eldho");
-            var result = elasticSearch.InsertData(new Employee { FirstName = "Eldho", LastName = "Abe" });
-            return "Success";
+                return Json(employees, JsonRequestBehavior.AllowGet);
+            }
+            else
+                return null;
         }
 
 
-        // POST api/<controller>
+        //Elastic/Post
+
+        /// <summary>
+        /// Insert employee into elastic search db
+        /// </summary>
+        /// <param name="employee">The employee</param>
         public void Post([FromBody]Employee employee)
         {
             var result = elasticSearch.InsertData(employee);
         }
 
-
-
-        // DELETE api/<controller>/5
-        public void Delete(int id)
-        {
-        }
     }
 }

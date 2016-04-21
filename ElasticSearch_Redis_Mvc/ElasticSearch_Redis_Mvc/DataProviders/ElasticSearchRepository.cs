@@ -10,17 +10,22 @@ namespace ElasticSearch_Redis_Mvc.DataProviders
 {
     public class ElasticSearchRepository
     {
-        protected ElasticClient Client;
+        protected readonly ElasticClient Client;
+        private IndexName index = "employee";
 
-        IndexName index = "employee";
-
+        /// <summary>
+        /// Construtor 
+        /// </summary>
+        /// <param name="elasticServerUri">The elastic server uri</param>
         public ElasticSearchRepository(Uri elasticServerUri)
         {
             var connection = new ConnectionSettings(elasticServerUri).DefaultIndex("employee");
             this.Client = new ElasticClient(connection);
-
         }
 
+        /// <summary>
+        /// Create index for the docuemnt
+        /// </summary>
         public void CreateIndex()
         {
 
@@ -32,12 +37,11 @@ namespace ElasticSearch_Redis_Mvc.DataProviders
             indexstate.Settings = settings;
 
 
-            Client.CreateIndex(index, g => g.Index(index)
+            Client.CreateIndex(index, g => g
                   .InitializeUsing(indexstate)
                   .Mappings(j => j.Map<Employee>(h => h.AutoMap(1))));
 
         }
-
 
 
         /// <summary>
@@ -50,24 +54,17 @@ namespace ElasticSearch_Redis_Mvc.DataProviders
         }
 
 
+        /// <summary>
+        /// Match query search on first name
+        /// </summary>
+        /// <param name="search">The search key value</param>
+        /// <returns></returns>
         public List<Employee> Search(string search)
         {
-            var response = Client.Search<Employee>(s => s
-                                 .AllIndices()
-                                 .AllTypes()
-                                 .From(0)
-                                 .Size(10)
-                                 .Query(q =>q
-                                 .Term(t => t.FirstName, "Eldho")));
 
             var result = Client.Search<Employee>(h => h
                                 .Query(q => q
-                                    .Match(m => m.Field("FirstName").Query(search))));
-
-            var result2 = Client.Search<Employee>(h => h
-                         .Type("employee")
-                         .Query(k => k
-                         .Term(g => g.FirstName, "Eldho")));
+                                    .Match(m => m.Field("firstName").Query(search))));
 
             return result.Documents.ToList();
         }
