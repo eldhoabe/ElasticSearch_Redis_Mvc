@@ -29,6 +29,7 @@ namespace ElasticSearch_Redis_Mvc.DataProviders.Repository
 
         public T Store(T entity)
         {
+            
             return _redisClient.Store<T>(entity);
         }
     }
