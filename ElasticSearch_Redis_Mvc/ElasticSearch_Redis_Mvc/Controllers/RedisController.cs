@@ -27,7 +27,9 @@ namespace ElasticSearch_Redis_Mvc.Controllers
 
             var result = _dataAccessPoint.EmployeeRepository.GetAll();
 
-            return Json(result,JsonRequestBehavior.AllowGet);
+            var jsonResult = new JsonResult { Data = result, ContentType = "text/plain",JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+
+            return jsonResult;
         }
 
 
