@@ -26,11 +26,15 @@ namespace ElasticSearch_Redis_Mvc.Controllers
         //
         // GET: /Common/
 
-        public ActionResult Index(string search)
+        public string Index(string search)
         {
+            if (string.IsNullOrEmpty(search))
+                search = "Eldho";
+
             Create(new Employee { FirstName = search, LastName = search });
 
-            return View();
+            return "A employee is inserted";
+
         }
 
         /// <summary>
