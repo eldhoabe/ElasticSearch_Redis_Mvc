@@ -191,7 +191,11 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ElasticController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\RedisController.cs" />
+    <Compile Include="DataProviders\AccessPoint.cs" />
     <Compile Include="DataProviders\ElasticSearchRepository.cs" />
+    <Compile Include="DataProviders\Repository\GenericRepository.cs" />
+    <Compile Include="DataProviders\Repository\IGenericRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -250,6 +254,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Redis\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
