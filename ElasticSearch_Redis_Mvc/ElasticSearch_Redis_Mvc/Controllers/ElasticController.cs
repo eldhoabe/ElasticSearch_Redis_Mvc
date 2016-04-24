@@ -37,14 +37,14 @@ namespace ElasticSearch_Redis_Mvc.Controllers
 
                 var employees = elasticSearch.Search(search);
 
-                return Json(employees, JsonRequestBehavior.AllowGet);
+                return Json(employees,JsonRequestBehavior.AllowGet);
             }
             else
                 return null;
         }
 
 
-        //Elastic/Post
+        
 
         /// <summary>
         /// Insert employee into elastic search db

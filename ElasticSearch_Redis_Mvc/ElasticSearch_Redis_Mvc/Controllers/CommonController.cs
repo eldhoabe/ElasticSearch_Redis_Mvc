@@ -3,8 +3,11 @@ using ElasticSearch_Redis_Mvc.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+//using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+//using System.Web.Http;
 using System.Web.Mvc;
 
 namespace ElasticSearch_Redis_Mvc.Controllers
@@ -22,25 +25,26 @@ namespace ElasticSearch_Redis_Mvc.Controllers
 
         //
         // GET: /Common/
-        [HttpPost]
-        public ActionResult Index(Employee data)
+
+        public ActionResult Index(string search)
         {
-            Post(data);
+            Create(new Employee { FirstName = search, LastName = search });
 
             return View();
         }
 
-        //[HttpPost]
-        private void Post(Employee employee)
+        /// <summary>
+        /// This create and insert data in elastic search and redis 
+        /// </summary>
+        /// <param name="employee"></param>
+        public void Create(Employee employee)
         {
-            //if (String.IsNullOrEmpty(search))
-            //    throw new ArgumentNullException("The search is null or empty");
 
             elasticSearch.CreateIndex();
-            //var employee = new Employee { FirstName = search, LastName = search, Id = 1 };
             elasticSearch.InsertData(employee);
 
             _dataAccessPoint.EmployeeRepository.Store(employee);
+
         }
     }
 }
